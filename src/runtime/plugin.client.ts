@@ -1,13 +1,16 @@
 import { defineNuxtPlugin } from '#app'
-import { io } from 'socket.io-client'
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin(async (nuxtApp) => {
+  const { io } = await import('socket.io-client')
   const socket = io()
 
-  return {
-    provide: {
-      socket,
-      io
-    }
-  }
+  nuxtApp.provide('socket', socket)
+  nuxtApp.provide('io', io)
 })
+
+declare module '#app' {
+  interface NuxtApp {
+    $io: typeof import('socket.io-client')['io']
+    $socket: ReturnType<typeof import('socket.io-client')['io']>
+  }
+}
