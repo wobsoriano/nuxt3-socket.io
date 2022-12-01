@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { io } from 'socket.io-client'
-import { onMounted, ref } from '#imports'
+import { onMounted, ref, useSocket } from '#imports'
+
+const socket = useSocket()
 
 const connected = ref(false)
 
 onMounted(() => {
-  const socket = io()
-
   socket.on('connect', () => {
     connected.value = socket.connected
   })
