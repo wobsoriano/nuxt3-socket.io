@@ -1,0 +1,44 @@
+{
+  "name": "nuxt3-socket.io",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:preview": "nuxi preview playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.0.0",
+    "engine.io": "^6.2.1",
+    "pathe": "^1.0.0",
+    "socket.io": "^4.5.4",
+    "socket.io-client": "^4.5.4"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.2.1",
+    "@nuxt/schema": "^3.0.0",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.28.0",
+    "nuxt": "^3.0.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "engine.io@6.2.1": "patches/engine.io@6.2.1.patch"
+    }
+  }
+}
