@@ -19,7 +19,9 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:preview": "nuxi preview playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp && npm publish"
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0",
