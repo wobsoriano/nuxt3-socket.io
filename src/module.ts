@@ -32,6 +32,11 @@ export default defineNuxtModule<ModuleOptions>({
       handler: resolve(runtimeDir, 'handler')
     })
 
+    addServerHandler({
+      middleware: true,
+      handler: resolve(runtimeDir, 'middleware')
+    })
+
     addTemplate({
       filename: 'types/socket-io.d.ts',
       getContents () {
