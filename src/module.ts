@@ -28,18 +28,18 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     addServerHandler({
-      route: '/api/__init_socket',
-      handler: resolve(runtimeDir, 'handler')
+      middleware: true,
+      handler: resolve(runtimeDir, 'socket-init-handler')
     })
-
-    addPlugin(resolve(runtimeDir, 'plugin.server'))
 
     addTemplate({
       filename: 'types/socket-io.d.ts',
       getContents () {
         return `
-          declare global {
-            var $io: typeof import('socket.io')['Server']
+          declare module 'h3' {
+            interface H3EventContext {
+              $io: typeof import('socket.io')['Server']
+            }
           }
           export {}
         `

@@ -1,6 +1,5 @@
 export default eventHandler((event) => {
-  console.log(event.node.req.socket.server.$io)
-
+  console.log(event.context.$io)
   return {
     hello: 'world'
   }
