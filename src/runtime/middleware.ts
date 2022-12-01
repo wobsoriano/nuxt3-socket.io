@@ -3,9 +3,7 @@ import { eventHandler } from 'h3'
 
 // Pass the IO to event.context.$io for easy access
 export default eventHandler((event) => {
-  const httpServer = (event.node.req.socket as any).server as Server & {
-    __io: any
-  }
+  const io = (event.node.req.socket as any).server.__io as any
 
-  event.context.$io = httpServer.__io
+  event.context.$io = io
 })
