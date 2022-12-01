@@ -6,7 +6,8 @@ export default defineNuxtPlugin(() => {
 
   return {
     provide: {
-      socket
+      socket,
+      io
     }
   }
 })

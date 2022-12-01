@@ -1,4 +1,4 @@
-# Nuxt Module
+# nuxt3-socket.io
 
 ## Development
 
