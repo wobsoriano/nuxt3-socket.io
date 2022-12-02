@@ -6,7 +6,7 @@ import { Server as SocketServer, ServerOptions } from 'socket.io'
 
 export interface ModuleOptions {
   addPlugin: boolean
-  socketServerOptions: Partial<ServerOptions>
+  serverOptions: Partial<ServerOptions>
 }
 
 export function defineIOHandler (cb: (io: SocketServer) => void) {
@@ -20,13 +20,13 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     addPlugin: true,
-    socketServerOptions: {}
+    serverOptions: {}
   },
   async setup (options, nuxt) {
     const extGlob = '**/*.{ts,js,mjs}'
     const files: string[] = []
 
-    nuxt.options.runtimeConfig.socketServerOptions = options
+    nuxt.options.runtimeConfig.serverOptions = options.serverOptions
 
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)

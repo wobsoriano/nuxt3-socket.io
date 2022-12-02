@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   socket: {
     // JSON serializable options only.
     // Options like `allowRequest` won't work.
-    socketServerOptions: {}
+    serverOptions: {}
   }
 })
 ```
