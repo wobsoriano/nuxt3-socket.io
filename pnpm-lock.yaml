@@ -13,6 +13,7 @@ specifiers:
   bumpp: ^8.2.1
   engine.io: ^6.2.1
   eslint: ^8.28.0
+  fast-glob: ^3.2.12
   nuxt: ^3.0.0
   pathe: ^1.0.0
   requrl: ^3.0.2
@@ -22,6 +23,7 @@ specifiers:
 dependencies:
   '@nuxt/kit': 3.0.0
   engine.io: 6.2.1_la4j7gvkgkaovg4lpn5w6kfanm
+  fast-glob: 3.2.12
   pathe: 1.0.0
   requrl: 3.0.2
   socket.io: 4.5.4
