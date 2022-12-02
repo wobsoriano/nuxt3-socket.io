@@ -26,8 +26,6 @@ export default defineNuxtModule<ModuleOptions>({
     const extGlob = '**/*.{ts,js,mjs}'
     const files: string[] = []
 
-    nuxt.options.runtimeConfig.serverOptions = options.serverOptions
-
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
 
@@ -70,7 +68,7 @@ export default defineNuxtModule<ModuleOptions>({
           ${files.map((file, index) => `import function${index} from '${file.replace('.ts', '')}'`).join('\n')}
           export default createIOHandler({
             ${files.map((_, index) => `function${index}`).join(',\n')}
-          })
+          }, ${JSON.stringify(options.serverOptions)})
         `
       }
     })
