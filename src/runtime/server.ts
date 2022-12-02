@@ -1,6 +1,7 @@
 import type { Server } from 'http'
 import { Server as SocketServer } from 'socket.io'
 import { eventHandler } from 'h3'
+import { useRuntimeConfig } from '#imports'
 
 const runtimeConfig = useRuntimeConfig()
 
