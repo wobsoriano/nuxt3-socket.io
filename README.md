@@ -16,7 +16,7 @@ export default defineNuxtConfig({
 
 ## Usage
 
-Client
+### Client
 
 ```vue
 <script setup>
@@ -40,7 +40,7 @@ onMounted(() => {
 </template>
 ```
 
-Server
+### Server
 
 Like `server/api` and `server/middleware`, you can expose your functions inside `server/socket` folder to access the server instance:
 
