@@ -13,7 +13,6 @@ export default defineNuxtConfig({
   modules: ['nuxt3-socket.io'],
   socket: {
     // JSON serializable options only.
-    // Options like `allowRequest` won't work.
     serverOptions: {}
   }
 })
