@@ -10,7 +10,12 @@ pnpm add nuxt3-socket.io
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['nuxt3-socket.io']
+  modules: ['nuxt3-socket.io'],
+  socket: {
+    // JSON serializable options only.
+    // Options like `allowRequest` won't work.
+    socketServerOptions: {}
+  }
 })
 ```
 
@@ -20,7 +25,12 @@ export default defineNuxtConfig({
 
 ```vue
 <script setup>
+// Default
 const socket = useSocket()
+
+// Custom
+const io = useIO()
+const socket2 = io('http://localhost:3069')
 
 const connected = ref(false)
 
