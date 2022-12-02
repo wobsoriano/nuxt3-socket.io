@@ -77,6 +77,8 @@ export default eventHandler((event) => {
 })
 ```
 
+It's recommended to roll your own socket server if you need more customization other than what is specified here.
+
 ## Development
 
 - Run `npm run dev:prepare` to generate type stubs.
