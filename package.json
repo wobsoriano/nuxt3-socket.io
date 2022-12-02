@@ -7,10 +7,6 @@
     ".": {
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
-    },
-    "./helpers": {
-      "import": "./dist/runtime/helpers.mjs",
-      "types": "./dist/runtime/helpers.d.ts"
     }
   },
   "main": "./dist/module.cjs",

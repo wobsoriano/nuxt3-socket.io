@@ -1,16 +1,15 @@
 import type { Server } from 'http'
-import { eventHandler } from 'h3'
+import { eventHandler, NodeIncomingMessage } from 'h3'
 
 export default eventHandler(async (event) => {
-  if (!(event.node.req.socket as any).server.__io) {
+  // @ts-ignore
+  if (!event.node.req.$io) {
     const httpServer = (event.node.req.socket as any).server as Server
     const { Server: SocketServer } = await import('socket.io')
-    const io = new SocketServer(httpServer, {
-      path: '/api/socket.io'
-    })
+    const io = new SocketServer(httpServer)
 
     // @ts-ignore
-    event.node.req.socket.server.__io = io
+    event.node.req.$io = io
   }
 
   return {

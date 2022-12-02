@@ -21,20 +21,21 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.addPlugin) {
       addPlugin(resolve(runtimeDir, 'plugin.client'))
 
-      addImports({
-        name: 'useSocket',
-        from: resolve(runtimeDir, 'composables')
-      })
+      addImports([
+        {
+          name: 'useSocket',
+          from: resolve(runtimeDir, 'composables')
+        },
+        {
+          name: 'useIO',
+          from: resolve(runtimeDir, 'composables')
+        }
+      ])
     }
 
     addServerHandler({
-      route: '/api/socket.io',
+      route: '/socket.io',
       handler: resolve(runtimeDir, 'handler')
-    })
-
-    addServerHandler({
-      middleware: true,
-      handler: resolve(runtimeDir, 'middleware')
     })
 
     addTemplate({
