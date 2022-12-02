@@ -53,10 +53,10 @@ onMounted(() => {
 
 ### Server
 
-Like `server/api` and `server/middleware`, you can expose your functions inside `server/socket` folder to access the server instance:
+By default, this module automatically creates a server instance. If you want access to that server instance, you can expose functions inside `server/socket` and use the `defineIOHandler`:
 
 ```ts
-// server/socket/log.ts
+// server/socket/whatever-file-name.ts
 
 import { defineIOHandler } from 'nuxt3-socket.io'
 
