@@ -2,10 +2,11 @@ import { fileURLToPath } from 'url'
 import { defineNuxtModule, addServerHandler, addPlugin, addImports, addTemplate } from '@nuxt/kit'
 import { resolve } from 'pathe'
 import fg from 'fast-glob'
-import { Server as SocketServer } from 'socket.io'
+import { Server as SocketServer, ServerOptions } from 'socket.io'
 
 export interface ModuleOptions {
   addPlugin: boolean
+  socketServerOptions: Partial<ServerOptions>
 }
 
 export function defineIOHandler (cb: (io: SocketServer) => void) {
@@ -18,11 +19,14 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'socket'
   },
   defaults: {
-    addPlugin: true
+    addPlugin: true,
+    socketServerOptions: {}
   },
   async setup (options, nuxt) {
     const extGlob = '**/*.{ts,js,mjs}'
     const files: string[] = []
+
+    nuxt.options.runtimeConfig.socketServerOptions = options
 
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)

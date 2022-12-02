@@ -8,7 +8,15 @@ Just another [socket.io](https://socket.io/) module for Nuxt 3.
 pnpm add nuxt3-socket.io
 ```
 
+```ts
+export default defineNuxtConfig({
+  modules: ['nuxt3-socket.io']
+})
+```
+
 ## Usage
+
+Client
 
 ```vue
 <script setup>
@@ -32,7 +40,33 @@ onMounted(() => {
 </template>
 ```
 
-Yep, that's it.
+Server
+
+Like `server/api` and `server/middleware`, you can expose your functions inside `server/socket` folder to access the server instance:
+
+```ts
+// server/socket/log.ts
+
+import { defineIOHandler } from 'nuxt3-socket.io'
+
+export default defineIOHandler((io) => {
+  io.on('connection', (socket) => {
+    console.log('Connected ', socket.id)
+  })
+})
+```
+
+The server instance is also available in the request object as `$io`:
+
+```ts
+export default eventHandler((event) => {
+  const $io = event.node.req.$io
+
+  if ($io) {
+    console.log('do something...')
+  }
+})
+```
 
 ## Development
 
