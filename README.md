@@ -2,6 +2,8 @@
 
 Just another [socket.io](https://socket.io/) module for Nuxt 3.
 
+It uses the `server` object inside the `event.node.req.socket` object instead of the server provided by the `listen` Nuxt hook.
+
 ## Install
 
 ```bash
