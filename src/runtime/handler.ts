@@ -1,5 +1,5 @@
 import type { Server } from 'http'
-import { eventHandler, NodeIncomingMessage } from 'h3'
+import { eventHandler } from 'h3'
 
 export default eventHandler(async (event) => {
   // @ts-ignore
