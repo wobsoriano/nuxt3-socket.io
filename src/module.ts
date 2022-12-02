@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'url'
-import { defineNuxtModule, addTemplate, addServerHandler, addPlugin, addImports } from '@nuxt/kit'
+import { defineNuxtModule, addServerHandler, addPlugin, addImports } from '@nuxt/kit'
 import { resolve } from 'pathe'
 
 export interface ModuleOptions {
@@ -36,24 +36,6 @@ export default defineNuxtModule<ModuleOptions>({
     addServerHandler({
       route: '/socket.io',
       handler: resolve(runtimeDir, 'handler')
-    })
-
-    addTemplate({
-      filename: 'types/socket-io.d.ts',
-      getContents () {
-        return `
-          declare module 'h3' {
-            interface H3EventContext {
-              $io: typeof import('socket.io')['Server']
-            }
-          }
-          export {}
-        `
-      }
-    })
-
-    nuxt.hook('prepare:types', (options) => {
-      options.references.push({ path: resolve(nuxt.options.buildDir, 'types/socket-io.d.ts') })
     })
   }
 })
