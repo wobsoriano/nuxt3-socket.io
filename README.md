@@ -67,17 +67,7 @@ export default defineIOHandler((io) => {
 })
 ```
 
-The server instance is also available in the request object as `$io`:
-
-```ts
-export default eventHandler((event) => {
-  const $io = event.node.req.$io
-
-  if ($io) {
-    console.log('do something...')
-  }
-})
-```
+The server instance is also available via `globalThis.__io`.
 
 It's recommended to roll your own socket server if you need more customization other than what is specified here.
 

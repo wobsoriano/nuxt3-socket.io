@@ -2,10 +2,14 @@ import type { Server } from 'http'
 import { Server as SocketServer, ServerOptions } from 'socket.io'
 import { eventHandler } from 'h3'
 
+declare global {
+  // eslint-disable-next-line no-var
+  var __io: SocketServer
+}
+
 export function createIOHandler<T extends Record<string, (io: SocketServer) => void>> (functions: T, serverOptions: Partial<ServerOptions>) {
   return eventHandler((event) => {
-    // @ts-ignore
-    if (!event.node.req.$io) {
+    if (!globalThis.__io) {
       const httpServer = (event.node.req.socket as any).server as Server
       const io = new SocketServer(httpServer, serverOptions)
 
@@ -13,12 +17,7 @@ export function createIOHandler<T extends Record<string, (io: SocketServer) => v
         functions[fn](io)
       })
 
-      // @ts-ignore
-      event.node.req.$io = io
-    }
-
-    return {
-      ok: true
+      globalThis.__io = io
     }
   })
 }

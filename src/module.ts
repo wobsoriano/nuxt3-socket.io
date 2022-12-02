@@ -53,7 +53,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     addServerHandler({
-      route: '/socket.io',
+      middleware: true,
       handler: resolve(nuxt.options.buildDir, 'io-handler.ts')
     })
 
