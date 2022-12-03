@@ -53,7 +53,7 @@ onMounted(() => {
 
 ### Server
 
-By default, this module automatically creates a server instance. If you want access to that server instance, you can expose functions inside `server/socket` and use the `defineIOHandler`:
+By default, this module automatically creates a server instance. If you want access to that server instance, you can expose functions inside `server/socket` and use the `defineIOHandler` wrapper function:
 
 ```ts
 // server/socket/whatever-file-name.ts
