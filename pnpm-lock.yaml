@@ -19,6 +19,7 @@ specifiers:
   requrl: ^3.0.2
   socket.io: ^4.5.4
   socket.io-client: ^4.5.4
+  unctx: ^2.1.1
 
 dependencies:
   '@nuxt/kit': 3.0.0
@@ -28,6 +29,7 @@ dependencies:
   requrl: 3.0.2
   socket.io: 4.5.4
   socket.io-client: 4.5.4
+  unctx: 2.1.1
 
 devDependencies:
   '@nuxt/module-builder': 0.2.1

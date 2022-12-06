@@ -9,7 +9,7 @@ declare global {
 
 export function createIOHandler<T extends Record<string, (io: SocketServer) => void>> (functions: T, serverOptions: Partial<ServerOptions>) {
   return eventHandler((event) => {
-    if (!globalThis.__io) {
+    if (!globalThis.__io && process.env.NODE_ENV === 'production') {
       const httpServer = (event.node.req.socket as any).server as Server
       const io = new SocketServer(httpServer, serverOptions)
 

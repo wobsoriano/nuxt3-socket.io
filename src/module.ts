@@ -29,6 +29,8 @@ export default defineNuxtModule<ModuleOptions>({
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
 
+    const functionsPath = resolve(nuxt.options.buildDir, 'io-functions')
+
     nuxt.hook('builder:watch', async (e, path) => {
       if (e === 'change') { return }
       if (path.includes('server/socket')) {
@@ -36,6 +38,16 @@ export default defineNuxtModule<ModuleOptions>({
         await nuxt.callHook('builder:generateApp')
       }
     })
+
+    if (nuxt.options.dev) {
+      nuxt.hook('listen', async (httpServer) => {
+        const io = new SocketServer(httpServer, options.serverOptions)
+        const functions = await import(functionsPath)
+        Object.keys(functions).forEach((fn) => {
+          functions[fn](io)
+        })
+      })
+    }
 
     if (options.addPlugin) {
       addPlugin(resolve(runtimeDir, 'plugin.client'))
@@ -58,6 +70,19 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     await scanRemoteFunctions()
+
+    addTemplate({
+      filename: 'io-functions.ts',
+      write: true,
+      getContents () {
+        return `
+          ${files.map((file, index) => `import function${index} from '${file.replace('.ts', '')}'`).join('\n')}
+          export {
+            ${files.map((_, index) => `function${index}`).join(',\n')}
+          }
+        `
+      }
+    })
 
     addTemplate({
       filename: 'io-handler.ts',
