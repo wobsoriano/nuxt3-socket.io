@@ -2,7 +2,7 @@
 
 Just another [socket.io](https://socket.io/) module for Nuxt 3.
 
-It uses the `server` object inside `req.socket` instead of the one provided by the `listen` Nuxt hook.
+This module uses the Vite server in development and `req.socket.server` in production.
 
 ## Install
 
