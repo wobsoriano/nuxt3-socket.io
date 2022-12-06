@@ -67,8 +67,6 @@ export default defineIOHandler((io) => {
 })
 ```
 
-The server instance is also available via `globalThis.__io`.
-
 It's recommended to roll your own socket server if you need more customization other than what is specified here.
 
 ## Development
