@@ -40,26 +40,31 @@ export default defineNuxtModule<ModuleOptions>({
     await scanRemoteFunctions()
 
     addTemplate({
-      filename: 'io-dev-functions.ts',
+      filename: 'io-dev-functions.mjs',
       write: true,
       getContents () {
-        return `
-          ${files.map((file, index) => `import function${index} from '${file.replace('.ts', '')}'`).join('\n')}
+         return `
+          import jiti from 'jiti';
+          const _require = jiti(process.cwd(), { interopDefault: true, esmResolve: true });
+
+          ${files.map((file, index) => `const function${index} = _require('${file.replace(".ts", "")}');`).join("\n")}
           export {
-            ${files.map((_, index) => `function${index}`).join(',\n')}
+            ${files.map((_, index) => `function${index}`).join(",\n")}
           }
-        `
+        `;
       }
     })
 
     if (nuxt.options.dev) {
-      const devFunctionsPath = resolve(nuxt.options.buildDir, 'io-dev-functions')
+      const devFunctionsPath = resolve(nuxt.options.buildDir, 'io-dev-functions.mjs');
 
-      nuxt.hook('listen', async (httpServer) => {
-        const io = new SocketServer(httpServer, options.serverOptions)
-        const functions = await import(devFunctionsPath)
-        Object.keys(functions).forEach((fn) => {
-          functions[fn](io)
+      nuxt.hook('listen', (httpServer) => {
+        nuxt.hook("app:templatesGenerated", async () => {
+          const io = new SocketServer(httpServer, options.serverOptions)
+          const functions = await import(devFunctionsPath)
+          Object.keys(functions).forEach((fn) => {
+            functions[fn](io)
+          })
         })
       })
     }
