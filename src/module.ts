@@ -43,23 +43,23 @@ export default defineNuxtModule<ModuleOptions>({
       filename: 'io-dev-functions.mjs',
       write: true,
       getContents () {
-         return `
+        return `
           import jiti from 'jiti';
           const _require = jiti(process.cwd(), { interopDefault: true, esmResolve: true });
 
-          ${files.map((file, index) => `const function${index} = _require('${file.replace(".ts", "")}');`).join("\n")}
+          ${files.map((file, index) => `const function${index} = _require('${file.replace('.ts', '')}');`).join('\n')}
           export {
-            ${files.map((_, index) => `function${index}`).join(",\n")}
+            ${files.map((_, index) => `function${index}`).join(',\n')}
           }
-        `;
+        `
       }
     })
 
     if (nuxt.options.dev) {
-      const devFunctionsPath = resolve(nuxt.options.buildDir, 'io-dev-functions.mjs');
+      const devFunctionsPath = resolve(nuxt.options.buildDir, 'io-dev-functions.mjs')
 
       nuxt.hook('listen', (httpServer) => {
-        nuxt.hook("app:templatesGenerated", async () => {
+        nuxt.hook('app:templatesGenerated', async () => {
           const io = new SocketServer(httpServer, options.serverOptions)
           const functions = await import(devFunctionsPath)
           Object.keys(functions).forEach((fn) => {
