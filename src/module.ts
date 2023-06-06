@@ -1,6 +1,5 @@
 import { fileURLToPath, pathToFileURL } from 'url'
-import { defineNuxtModule, addServerHandler, addPlugin, addImports, addTemplate } from '@nuxt/kit'
-import { resolve } from 'pathe'
+import { defineNuxtModule, addServerHandler, addPlugin, addImports, addTemplate, createResolver } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { Server as SocketServer, ServerOptions } from 'socket.io'
 
@@ -23,6 +22,8 @@ export default defineNuxtModule<ModuleOptions>({
     serverOptions: {}
   },
   async setup (options, nuxt) {
+    const { resolve } = createResolver(import.meta.url);
+    
     const extGlob = '**/*.{ts,js,mjs}'
     const files: string[] = []
 
@@ -56,7 +57,7 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     if (nuxt.options.dev) {
-      const devFunctionsPath = resolve(nuxt.options.buildDir, 'io-dev-functions.mjs')
+      const devFunctionsPath = pathToFileURL(resolve(nuxt.options.buildDir, 'io-dev-functions.mjs')).toString()
 
       nuxt.hook('listen', (httpServer) => {
         nuxt.hook('app:templatesGenerated', async () => {
