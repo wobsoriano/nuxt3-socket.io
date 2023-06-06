@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath, pathToFileURL } from 'url'
 import { defineNuxtModule, addServerHandler, addPlugin, addImports, addTemplate } from '@nuxt/kit'
 import { resolve } from 'pathe'
 import fg from 'fast-glob'
