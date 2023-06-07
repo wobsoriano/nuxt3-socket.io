@@ -27,7 +27,7 @@
     "@nuxt/kit": "^3.2.3",
     "engine.io": "^6.2.1",
     "fast-glob": "^3.2.12",
-    "pathe": "^1.0.0",
+    "pathe": "^1.1.1",
     "requrl": "^3.0.2",
     "socket.io": "^4.6.2",
     "socket.io-client": "^4.6.2"
