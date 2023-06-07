@@ -33,12 +33,12 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.hook('builder:watch', async (e, path) => {
       if (e === 'change') { return }
       if (path.includes('server/socket')) {
-        await scanRemoteFunctions()
+        await scanHandlers()
         await nuxt.callHook('builder:generateApp')
       }
     })
 
-    await scanRemoteFunctions()
+    await scanHandlers()
 
     addTemplate({
       filename: 'io-dev-functions.mjs',
@@ -104,7 +104,7 @@ export default defineNuxtModule<ModuleOptions>({
       }
     })
 
-    async function scanRemoteFunctions () {
+    async function scanHandlers () {
       files.length = 0
       const updatedFiles = await fg(extGlob, {
         cwd: resolve(nuxt.options.srcDir, 'server/socket'),
