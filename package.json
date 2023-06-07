@@ -24,7 +24,7 @@
     "release": "bumpp && npm publish"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.2.3",
+    "@nuxt/kit": "^3.5.3",
     "engine.io": "^6.2.1",
     "fast-glob": "^3.2.12",
     "pathe": "^1.1.1",
@@ -34,11 +34,11 @@
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.2.1",
-    "@nuxt/schema": "^3.2.3",
+    "@nuxt/schema": "^3.5.3",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "bumpp": "^8.2.1",
     "eslint": "^8.28.0",
-    "nuxt": "^3.2.3"
+    "nuxt": "^3.5.3"
   },
   "pnpm": {
     "patchedDependencies": {
