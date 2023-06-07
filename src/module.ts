@@ -22,8 +22,8 @@ export default defineNuxtModule<ModuleOptions>({
     serverOptions: {}
   },
   async setup (options, nuxt) {
-    const { resolve } = createResolver(import.meta.url);
-    
+    const { resolve } = createResolver(import.meta.url)
+
     const extGlob = '**/*.{ts,js,mjs}'
     const files: string[] = []
 
