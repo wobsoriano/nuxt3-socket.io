@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.5.3",
-    "engine.io": "^6.2.1",
     "fast-glob": "^3.2.12",
     "pathe": "^1.1.1",
     "requrl": "^3.0.2",
@@ -39,10 +38,5 @@
     "bumpp": "^9.1.1",
     "eslint": "^8.42.0",
     "nuxt": "^3.5.3"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "engine.io@6.2.1": "patches/engine.io@6.2.1.patch"
-    }
   }
 }
