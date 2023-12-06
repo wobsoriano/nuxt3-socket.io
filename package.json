@@ -8,12 +8,17 @@
       "types": "./dist/types.d.ts",
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
+    },
+    "./helpers": {
+      "types": "./dist/runtime/helpers.d.ts",
+      "import": "./dist/runtime/helpers.mjs"
     }
   },
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "helpers.d.ts"
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",

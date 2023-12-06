@@ -8,10 +8,6 @@ export interface ModuleOptions {
   serverOptions: Partial<ServerOptions>
 }
 
-export function defineIOHandler (cb: (io: SocketServer) => void) {
-  return cb
-}
-
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt3-socket.io',

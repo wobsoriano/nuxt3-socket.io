@@ -57,9 +57,8 @@ onMounted(() => {
 By default, this module automatically creates a server instance. If you want access to that server instance, you can expose functions inside `server/socket` and use the `defineIOHandler` wrapper function:
 
 ```ts
-// server/socket/whatever-file-name.ts
-
-import { defineIOHandler } from 'nuxt3-socket.io'
+// server/socket/example.ts
+import { defineIOHandler } from 'nuxt3-socket.io/helpers'
 
 export default defineIOHandler((io) => {
   io.on('connection', (socket) => {
