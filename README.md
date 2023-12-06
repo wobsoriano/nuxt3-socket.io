@@ -30,10 +30,6 @@ export default defineNuxtConfig({
 // Default
 const socket = useSocket()
 
-// Custom
-const io = useIO()
-const socket2 = io('http://localhost:3069')
-
 const connected = ref(false)
 
 onMounted(() => {
@@ -44,6 +40,13 @@ onMounted(() => {
   socket.on('disconnect', () => {
     connected.value = socket.connected
   })
+})
+
+// Custom
+const { $io } = useNuxtApp()
+
+onMounted(() => {
+  const socket2 = $io('http://localhost:3069')
 })
 </script>
 
