@@ -29,8 +29,8 @@
     "fast-glob": "^3.3.2",
     "pathe": "^1.1.1",
     "requrl": "^3.0.2",
-    "socket.io": "^4.6.2",
-    "socket.io-client": "^4.6.2"
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.5.4",

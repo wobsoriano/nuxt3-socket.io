@@ -9,7 +9,7 @@ dependencies:
     specifier: ^3.8.2
     version: 3.8.2(rollup@3.29.4)
   fast-glob:
-    specifier: ^3.2.12
+    specifier: ^3.3.2
     version: 3.3.2
   pathe:
     specifier: ^1.1.1
@@ -18,10 +18,10 @@ dependencies:
     specifier: ^3.0.2
     version: 3.0.2
   socket.io:
-    specifier: ^4.6.2
+    specifier: ^4.7.2
     version: 4.7.2
   socket.io-client:
-    specifier: ^4.6.2
+    specifier: ^4.7.2
     version: 4.7.2
 
 devDependencies:
@@ -1421,6 +1421,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -5279,6 +5280,10 @@ packages:
     resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
+    dev: true
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: true
 
   /natural-compare@1.4.0:
