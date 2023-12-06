@@ -33,6 +33,7 @@
     "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
+    "@nuxt/devtools": "latest",
     "@nuxt/module-builder": "^0.5.4",
     "@nuxt/schema": "^3.8.2",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
