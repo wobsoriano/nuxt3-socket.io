@@ -1,4 +1,4 @@
-export default eventHandler(async (event) => {
+export default eventHandler((event) => {
   console.log(globalThis.__io)
 
   return {
