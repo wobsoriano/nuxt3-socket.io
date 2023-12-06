@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onMounted, ref, useSocket } from '#imports'
-
 const socket = useSocket()
 
 const connected = ref(false)
