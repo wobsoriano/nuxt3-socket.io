@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.8.2",
-    "fast-glob": "^3.2.12",
+    "fast-glob": "^3.3.2",
     "pathe": "^1.1.1",
     "requrl": "^3.0.2",
     "socket.io": "^4.6.2",
