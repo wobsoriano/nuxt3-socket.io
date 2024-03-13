@@ -1,5 +1,8 @@
 # nuxt3-socket.io
 
+> [!WARNING]  
+> This module will soon be deprecated in favor of the built-in [WebSocket API](https://nitro.unjs.io/guide/websocket).
+
 Just another [socket.io](https://socket.io/) module for Nuxt 3.
 
 This module uses the Vite server in development and `req.socket.server` in production.
