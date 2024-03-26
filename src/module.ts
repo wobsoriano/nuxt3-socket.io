@@ -1,3 +1,4 @@
+import { relative, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'url'
 import { defineNuxtModule, addServerHandler, addPlugin, addImports, addTemplate, createResolver } from '@nuxt/kit'
 import fg from 'fast-glob'
@@ -27,6 +28,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir)
 
     nuxt.hook('builder:watch', async (e, path) => {
+      path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
       if (e === 'change') { return }
       if (path.includes('server/socket')) {
         await scanHandlers()
