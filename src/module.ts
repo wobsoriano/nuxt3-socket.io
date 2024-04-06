@@ -28,12 +28,13 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir)
 
     nuxt.hook('builder:watch', async (e, path) => {
-      path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
-      if (e === 'change') { return }
-      if (path.includes('server/socket')) {
-        await scanHandlers()
-        await nuxt.callHook('builder:generateApp')
-      }
+      path = relative(nuxt.options.serverDir, resolve(nuxt.options.serverDir, path))
+      const isSocketDir = /^server[\/\\]socket/.test(path)
+      
+      if (!isSocketDir || e === 'change') { return }
+
+      await scanHandlers()
+      await nuxt.callHook('builder:generateApp')
     })
 
     await scanHandlers()
@@ -105,7 +106,7 @@ export default defineNuxtModule<ModuleOptions>({
     async function scanHandlers () {
       files.length = 0
       const updatedFiles = await fg(extGlob, {
-        cwd: resolve(nuxt.options.srcDir, 'server/socket'),
+        cwd: resolve(nuxt.options.serverDir, 'socket'),
         absolute: true,
         onlyFiles: true
       })
