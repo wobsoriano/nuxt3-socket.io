@@ -30,20 +30,20 @@
     "release": "bumpp && npm publish"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.8.2",
+    "@nuxt/kit": "^3.11.2",
     "fast-glob": "^3.3.2",
-    "pathe": "^1.1.1",
+    "pathe": "^1.1.2",
     "requrl": "^3.0.2",
-    "socket.io": "^4.7.2",
-    "socket.io-client": "^4.7.2"
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxt/module-builder": "^0.5.4",
-    "@nuxt/schema": "^3.8.2",
-    "@nuxt/eslint-config": "^0.2.0",
-    "bumpp": "^9.2.0",
-    "eslint": "^8.55.0",
-    "nuxt": "^3.8.2"
+    "@nuxt/eslint-config": "^0.3.1",
+    "@nuxt/module-builder": "^0.5.5",
+    "@nuxt/schema": "^3.11.2",
+    "bumpp": "^9.4.0",
+    "eslint": "^9.0.0",
+    "nuxt": "^3.11.2"
   }
 }
