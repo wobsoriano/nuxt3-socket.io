@@ -63,6 +63,9 @@ export default defineNuxtModule<ModuleOptions>({
           const io = new SocketServer(httpServer, options.serverOptions)
           const functions = await import(devFunctionsPath)
           Object.keys(functions).forEach((fn) => {
+            if (typeof fn !== 'function') {
+              return
+            }
             functions[fn](io)
           })
         })
