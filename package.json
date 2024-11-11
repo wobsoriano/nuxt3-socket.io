@@ -39,8 +39,8 @@
     "@nuxt/kit": "^3.14.159",
     "fast-glob": "^3.3.2",
     "pathe": "^1.1.2",
-    "socket.io": "^4.7.5",
-    "socket.io-client": "^4.7.5"
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.6.0",
