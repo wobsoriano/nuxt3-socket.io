@@ -1,5 +1,5 @@
-import { relative, resolve } from 'node:path'
-import { fileURLToPath, pathToFileURL } from 'url'
+import { relative } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { defineNuxtModule, addServerHandler, addPlugin, addImports, addTemplate, createResolver } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { Server as SocketServer, type ServerOptions } from 'socket.io'
@@ -12,13 +12,13 @@ export interface ModuleOptions {
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt3-socket.io',
-    configKey: 'socket'
+    configKey: 'socket',
   },
   defaults: {
     addPlugin: true,
-    serverOptions: {}
+    serverOptions: {},
   },
-  async setup (options, nuxt) {
+  async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
     const extGlob = '**/*.{ts,js,mjs}'
@@ -29,9 +29,11 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.hook('builder:watch', async (e, path) => {
       path = relative(nuxt.options.serverDir, resolve(nuxt.options.serverDir, path))
-      const isSocketDir = /^server[\/\\]socket/.test(path)
-      
-      if (!isSocketDir || e === 'change') { return }
+      const isSocketDir = /^server[/\\]socket/.test(path)
+
+      if (!isSocketDir || e === 'change') {
+        return
+      }
 
       await scanHandlers()
       await nuxt.callHook('builder:generateApp')
@@ -42,7 +44,7 @@ export default defineNuxtModule<ModuleOptions>({
     addTemplate({
       filename: 'io-dev-functions.mjs',
       write: true,
-      getContents () {
+      getContents() {
         return `
           import { createJiti } from "jiti"
           const _require = createJiti(process.cwd(), { interopDefault: true, esmResolve: true });
@@ -52,7 +54,7 @@ export default defineNuxtModule<ModuleOptions>({
             ${files.map((_, index) => `function${index}`).join(',\n')}
           }
         `
-      }
+      },
     })
 
     if (nuxt.options.dev) {
@@ -78,24 +80,24 @@ export default defineNuxtModule<ModuleOptions>({
       addImports([
         {
           name: 'useSocket',
-          from: resolve(runtimeDir, 'composables')
+          from: resolve(runtimeDir, 'composables'),
         },
         {
           name: 'useIO',
-          from: resolve(runtimeDir, 'composables')
-        }
+          from: resolve(runtimeDir, 'composables'),
+        },
       ])
     }
 
     addServerHandler({
       middleware: true,
-      handler: resolve(nuxt.options.buildDir, 'io-handler.ts')
+      handler: resolve(nuxt.options.buildDir, 'io-handler.ts'),
     })
 
     addTemplate({
       filename: 'io-handler.ts',
       write: true,
-      getContents () {
+      getContents() {
         return `
           import { createIOHandler } from '${resolve(runtimeDir, 'server')}';
           ${files.map((file, index) => `import function${index} from '${file.replace('.ts', '')}'`).join('\n')}
@@ -103,18 +105,18 @@ export default defineNuxtModule<ModuleOptions>({
             ${files.map((_, index) => `function${index}`).join(',\n')}
           }, ${JSON.stringify(options.serverOptions)})
         `
-      }
+      },
     })
 
-    async function scanHandlers () {
+    async function scanHandlers() {
       files.length = 0
       const updatedFiles = await fg(extGlob, {
         cwd: resolve(nuxt.options.serverDir, 'socket'),
         absolute: true,
-        onlyFiles: true
+        onlyFiles: true,
       })
       files.push(...new Set(updatedFiles))
       return files
     }
-  }
+  },
 })
