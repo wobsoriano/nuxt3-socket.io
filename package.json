@@ -47,7 +47,7 @@
     "@nuxt/eslint-config": "^0.6.1",
     "@nuxt/module-builder": "^0.8.4",
     "@nuxt/schema": "^3.14.159",
-    "bumpp": "^9.4.0",
+    "bumpp": "^9.8.1",
     "eslint": "^9.14.0",
     "nuxt": "^3.14.159"
   }
