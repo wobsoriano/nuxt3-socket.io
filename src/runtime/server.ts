@@ -1,5 +1,6 @@
-import type { Server } from 'http'
-import { Server as SocketServer, ServerOptions } from 'socket.io'
+import type { Server } from 'node:http'
+import type { ServerOptions } from 'socket.io'
+import { Server as SocketServer } from 'socket.io'
 import { eventHandler } from 'h3'
 
 declare global {
@@ -7,9 +8,10 @@ declare global {
   var __io: SocketServer
 }
 
-export function createIOHandler<T extends Record<string, (io: SocketServer) => void>> (functions: T, serverOptions: Partial<ServerOptions>) {
+export function createIOHandler<T extends Record<string, (io: SocketServer) => void>>(functions: T, serverOptions: Partial<ServerOptions>) {
   return eventHandler((event) => {
     if (!globalThis.__io && process.env.NODE_ENV === 'production') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const httpServer = (event.node.req.socket as any).server as Server
       const io = new SocketServer(httpServer, serverOptions)
 
