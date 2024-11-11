@@ -1,6 +1,6 @@
 import { relative } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { defineNuxtModule, addServerHandler, addPlugin, addImports, addTemplate, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addServerHandler, addPlugin, addTemplate, createResolver } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { Server as SocketServer, type ServerOptions } from 'socket.io'
 
@@ -73,11 +73,6 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     addPlugin(resolve(runtimeDir, 'plugin.client'))
-
-    addImports({
-      name: 'useIO',
-      from: resolve(runtimeDir, 'composables'),
-    })
 
     addServerHandler({
       middleware: true,
