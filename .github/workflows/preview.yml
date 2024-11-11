@@ -32,4 +32,4 @@ jobs:
 
       - name: Create a snapshot version
         id: snapshot
-        run: pnpm dlx pkg-pr-new publish --compact
+        run: pnpm dlx pkg-pr-new publish
