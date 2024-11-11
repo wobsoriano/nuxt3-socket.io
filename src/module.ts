@@ -44,8 +44,8 @@ export default defineNuxtModule<ModuleOptions>({
       write: true,
       getContents () {
         return `
-          import jiti from 'jiti';
-          const _require = jiti(process.cwd(), { interopDefault: true, esmResolve: true });
+          import { createJiti } from "jiti"
+          const _require = createJiti(process.cwd(), { interopDefault: true, esmResolve: true });
 
           ${files.map((file, index) => `const function${index} = _require('${file.replace('.ts', '')}');`).join('\n')}
           export {
@@ -63,6 +63,9 @@ export default defineNuxtModule<ModuleOptions>({
           const io = new SocketServer(httpServer, options.serverOptions)
           const functions = await import(devFunctionsPath)
           Object.keys(functions).forEach((fn) => {
+            if (typeof fn !== 'function') {
+              return
+            }
             functions[fn](io)
           })
         })
