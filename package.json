@@ -11,7 +11,7 @@
     },
     "./helpers": {
       "types": "./dist/runtime/helpers.d.ts",
-      "import": "./dist/runtime/helpers.mjs"
+      "import": "./dist/runtime/helpers.js"
     }
   },
   "main": "./dist/module.cjs",
