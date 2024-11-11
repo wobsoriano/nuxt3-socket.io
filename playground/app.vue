@@ -1,9 +1,11 @@
 <script setup lang="ts">
-const socket = useSocket()
+const { $io } = useNuxtApp()
 
 const connected = ref(false)
 
 onMounted(() => {
+  const socket = $io('http://localhost:3000')
+
   socket.on('connect', () => {
     connected.value = socket.connected
   })
