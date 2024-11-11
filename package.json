@@ -3,6 +3,12 @@
   "version": "0.3.1",
   "license": "MIT",
   "type": "module",
+  "homepage": "https://github.com/wobsoriano/nuxt3-socket.io#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wobsoriano/nuxt3-socket.io.git"
+  },
+  "bugs": "https://github.com/wobsoriano/nuxt3-socket.io/issues",
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
