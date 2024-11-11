@@ -5,7 +5,6 @@ import fg from 'fast-glob'
 import { Server as SocketServer, type ServerOptions } from 'socket.io'
 
 export interface ModuleOptions {
-  addPlugin: boolean
   serverOptions: Partial<ServerOptions>
 }
 
@@ -15,7 +14,6 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'socket',
   },
   defaults: {
-    addPlugin: true,
     serverOptions: {},
   },
   async setup(options, nuxt) {
@@ -74,20 +72,12 @@ export default defineNuxtModule<ModuleOptions>({
       })
     }
 
-    if (options.addPlugin) {
-      addPlugin(resolve(runtimeDir, 'plugin.client'))
+    addPlugin(resolve(runtimeDir, 'plugin.client'))
 
-      addImports([
-        {
-          name: 'useSocket',
-          from: resolve(runtimeDir, 'composables'),
-        },
-        {
-          name: 'useIO',
-          from: resolve(runtimeDir, 'composables'),
-        },
-      ])
-    }
+    addImports({
+      name: 'useIO',
+      from: resolve(runtimeDir, 'composables'),
+    })
 
     addServerHandler({
       middleware: true,

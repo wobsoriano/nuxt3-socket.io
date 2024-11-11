@@ -30,12 +30,13 @@ export default defineNuxtConfig({
 
 ```vue
 <script setup>
-// Default
-const socket = useSocket()
+const { $io } = useNuxtApp()
 
 const connected = ref(false)
 
 onMounted(() => {
+  const socket = $io('http://localhost:3000')
+  
   socket.on('connect', () => {
     connected.value = socket.connected
   })
@@ -43,13 +44,6 @@ onMounted(() => {
   socket.on('disconnect', () => {
     connected.value = socket.connected
   })
-})
-
-// Custom
-const { $io } = useNuxtApp()
-
-onMounted(() => {
-  const socket2 = $io('http://localhost:3069')
 })
 </script>
 
