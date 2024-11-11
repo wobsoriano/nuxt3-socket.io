@@ -1,7 +1,7 @@
 # nuxt3-socket.io
 
 > [!WARNING]  
-> This module will soon be deprecated in favor of the built-in [WebSocket API](https://nitro.unjs.io/guide/websocket).
+> This module will be deprecated before EOY in favor of the built-in [Nitro WebSocket](https://nitro.unjs.io/guide/websocket).
 
 Just another [socket.io](https://socket.io/) module for Nuxt 3.
 
